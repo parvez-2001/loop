@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FOR Loop Python </title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+            min-height: 100vh;
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            height: calc(100vh - 40px);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header .jiametric img {
+            width: auto;
+            height: 4rem;
+        }
+
+        .header h1 {
+            color: #333;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header p {
+            color: #666;
+            font-size: 1.2em;
+        }
+
+        .sections {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .section {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 20px;
+            border: 3px solid #e9ecef;
+            transition: all 0.3s ease;
+            overflow: auto;
+        }
+
+        .section h2 {
+            color: #495057;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+            text-align: center;
+        }
+
+        .code-container {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 14px;
+            line-height: 1.6;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .code-line {
+            margin: 5px 0;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .code-line.active {
+            background: rgba(72, 187, 120, 0.3);
+            border-left: 4px solid #48bb78;
+            transform: translateX(5px);
+        }
+
+        .keyword {
+            color: #f093fb;
+        }
+
+        .variable {
+            color: #4fd1c7;
+        }
+
+        .string {
+            color: #68d391;
+        }
+
+        .comment {
+            color: #a0aec0;
+        }
+
+        .output-line {
+            background: #1a202c;
+            color: #68d391;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.5s ease;
+        }
+
+        .output-line.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .step-info {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 0 10px 10px 0;
+            font-size: 14px;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 0.5s ease;
+            position: absolute;
+            width: calc(100% - 40px);
+        }
+
+        .step-info.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .variable-tracker {
+            background: #e8f5e8;
+            border: 2px solid #4caf50;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .fruits-list {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+
+        .fruit-item {
+            padding: 8px 15px;
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 20px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .fruit-item.current {
+            background: #4caf50;
+            color: white;
+            border-color: #45a049;
+            transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+        }
+
+        .current-variable {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+            text-align: center;
+        }
+
+        .variable-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #e65100;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .variable-value.highlight {
+            background: #fff3cd;
+            transform: scale(1.1);
+        }
+
+        .controls {
+            text-align: center;
+            margin: 30px 0 0;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            margin: 0 10px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn:disabled {
+            background: #a0aec0;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .status {
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .status.running {
+            background: #fff3cd;
+            color: #856404;
+            border: 2px solid #ffc107;
+        }
+
+        .status.finished {
+            background: #d4edda;
+            color: #155724;
+            border: 2px solid #28a745;
+        }
+
+        .iteration-counter {
+            background: #f8d7da;
+            border: 2px solid #f5c6cb;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+            text-align: center;
+        }
+
+        .iteration-value {
+            font-size: 20px;
+            font-weight: bold;
+            color: #721c24;
+            padding: 8px;
+            background: white;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .bounce {
+            animation: bounce 0.6s ease-in-out;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .pulse {
+            animation: pulse 1s infinite;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-between;
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            .header .python {
+                margin-bottom: 10px;
+            }
+
+            .sections {
+                grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .btn {
+                margin: 5px;
+                padding: 12px 20px;
+            }
+
+            .fruits-list {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        #stepContainer {
+            position: relative;
+            min-height: 150px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="python">
+                <h1>🐍 Python For Loop Visualizer</h1>
+                <p>Watch how the loop iterates through three fruits</p>
+            </div>
+            <figure class="jiametric">
+                <img src="FOR%20Loop%20Python_files/logo_jiametric.png" alt="">
+            </figure>
+        </div>
+
+        <div class="sections">
+            <div class="section">
+                <h2>1. Python Code</h2>
+                <div class="code-container">
+                    <div class="code-line" id="line1">
+                        <span class="variable">fruits</span> = [<span class="string">"apple"</span>, <span class="string">"banana"</span>, <span class="string">"orange"</span>]
+                    </div>
+                    <div class="code-line" id="line2">
+                        <span class="keyword">for</span> <span class="variable">fruit</span> <span class="keyword">in</span> <span class="variable">fruits</span>:
+                    </div>
+                    <div class="code-line" id="line3">
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">print</span>(<span class="variable">fruit</span>)
+                    </div>
+                </div>
+
+                <div class="variable-tracker">
+                    <h3 style="text-align: center; margin-bottom: 10px;">🍎 Fruits List</h3>
+                    <div class="fruits-list">
+                        <div class="fruit-item" id="fruit-0">🍎 apple</div>
+                        <div class="fruit-item" id="fruit-1">🍌 banana</div>
+                        <div class="fruit-item" id="fruit-2">🍊 orange</div>
+                    </div>
+                </div>
+
+                <div class="current-variable">
+                    <h3 style="margin-bottom: 10px;">Current Variable: fruit</h3>
+                    <div class="variable-value" id="currentFruit">Not set</div>
+                </div>
+
+                <div class="iteration-counter">
+                    <h3 style="margin-bottom: 10px;">Iteration</h3>
+                    <div class="iteration-value" id="iterationCount">0 / 3</div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>2. Step-by-Step Execution</h2>
+                <div id="stepContainer">
+                <div class="step-info show">
+                    <strong>Ready to start!</strong><br>
+                    Click "Start" or "Next Step" to begin execution.
+                </div>
+            </div>
+            </div>
+
+            <div class="section">
+                <h2>3. Output</h2>
+                <div class="code-container" id="outputContainer">
+                <div style="color: #a0aec0; font-style: italic;">
+                    Output will appear here...
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <div class="status " id="status">Ready to execute</div>
+
+        <div class="controls">
+            <button class="btn" id="startBtn" onclick="startExecution()">▶️ Start</button>
+            <button class="btn" id="stepBtn" onclick="nextStep()">👆 Next Step</button>
+            <button class="btn" id="resetBtn" onclick="resetExecution()">🔄 Reset</button>
+        </div>
+    </div>
+
+    <script>
+        let currentStep = 0;
+        let currentIteration = 0;
+        let isRunning = false;
+        let autoMode = false;
+        let outputCount = 0;
+
+        const fruits = ["apple", "banana", "orange"];
+        const fruitEmojis = ["🍎", "🍌", "🍊"];
+
+        const steps = [
+            {
+                line: 'line1',
+                action: 'Initialize fruits list',
+                description: 'Create a list containing three fruits: <strong>["apple", "banana", "orange"]</strong>. This list will be iterated over.',
+                code: 'fruits = ["apple", "banana", "orange"]'
+            },
+            {
+                line: 'line2',
+                action: 'Start for loop - Get first item',
+                description: 'The for loop begins. Python takes the first item <strong>"apple"</strong> from the fruits list and assigns it to the variable <strong>fruit</strong>.',
+                code: 'for fruit in fruits:',
+                iteration: 0,
+                currentFruit: 'apple'
+            },
+            {
+                line: 'line3',
+                action: 'Execute print statement',
+                description: 'Print "apple" to the output using the current value of <strong>fruit</strong>.',
+                code: 'print(fruit)',
+                output: 'apple'
+            },
+            {
+                line: 'line2',
+                action: 'Continue loop - Get second item',
+                description: 'Python automatically moves to the next item <strong>"banana"</strong> from the fruits list and assigns it to <strong>fruit</strong>.',
+                code: 'for fruit in fruits:',
+                iteration: 1,
+                currentFruit: 'banana'
+            },
+            {
+                line: 'line3',
+                action: 'Execute print statement',
+                description: 'Print "banana" to the output using the current value of <strong>fruit</strong>.',
+                code: 'print(fruit)',
+                output: 'banana'
+            },
+            {
+                line: 'line2',
+                action: 'Continue loop - Get third item',
+                description: 'Python moves to the final item <strong>"orange"</strong> from the fruits list and assigns it to <strong>fruit</strong>.',
+                code: 'for fruit in fruits:',
+                iteration: 2,
+                currentFruit: 'orange'
+            },
+            {
+                line: 'line3',
+                action: 'Execute print statement',
+                description: 'Print "orange" to the output using the current value of <strong>fruit</strong>.',
+                code: 'print(fruit)',
+                output: 'orange'
+            },
+            {
+                line: null,
+                action: 'Loop completed',
+                description: 'All items in the fruits list have been processed. The for loop automatically ends since there are no more items to iterate over.',
+                code: 'Loop finished'
+            }
+        ];
+
+        function updateCurrentFruit(fruit, iteration) {
+            const currentFruitElement = document.getElementById('currentFruit');
+            const emoji = fruitEmojis[iteration] || '';
+
+            if (fruit) {
+                currentFruitElement.innerHTML = `${emoji} ${fruit}`;
+                currentFruitElement.classList.add('highlight');
+
+                // Highlight current fruit in list
+                document.querySelectorAll('.fruit-item').forEach((item, index) => {
+                    item.classList.remove('current');
+                    if (index === iteration) {
+                        item.classList.add('current');
+                        item.classList.add('bounce');
+                        setTimeout(() => item.classList.remove('bounce'), 600);
+                    }
+                });
+            } else {
+                currentFruitElement.textContent = 'Not set';
+                document.querySelectorAll('.fruit-item').forEach(item => {
+                    item.classList.remove('current');
+                });
+            }
+
+            setTimeout(() => {
+                currentFruitElement.classList.remove('highlight');
+            }, 500);
+        }
+
+        function updateIterationCount(iteration) {
+            const iterationElement = document.getElementById('iterationCount');
+            iterationElement.textContent = `${iteration + 1} / 3`;
+        }
+
+        function highlightLine(lineId) {
+            // Remove previous highlights
+            document.querySelectorAll('.code-line').forEach(line => {
+                line.classList.remove('active');
+            });
+
+            // Add highlight to current line
+            if (lineId) {
+                document.getElementById(lineId).classList.add('active');
+            }
+        }
+
+        function addStepInfo(step) {
+            const container = document.getElementById('stepContainer');
+            container.innerHTML = ''; // Clear previous step
+            
+            const stepDiv = document.createElement('div');
+            stepDiv.className = 'step-info';
+            stepDiv.innerHTML = `
+                <strong>Step ${currentStep + 1}: ${step.action}</strong><br>
+                ${step.description}
+            `;
+
+            container.appendChild(stepDiv);
+            setTimeout(() => {
+                stepDiv.classList.add('show');
+            }, 100);
+        }
+
+        function addOutput(text) {
+            const container = document.getElementById('outputContainer');
+            if (outputCount === 0) {
+                container.innerHTML = '';
+            }
+
+            const outputDiv = document.createElement('div');
+            outputDiv.className = 'output-line';
+            outputDiv.textContent = text;
+            container.appendChild(outputDiv);
+
+            setTimeout(() => {
+                outputDiv.classList.add('show');
+            }, 100);
+
+            outputCount++;
+        }
+
+        function updateStatus(message, className = '') {
+            const statusElement = document.getElementById('status');
+            statusElement.textContent = message;
+            statusElement.className = `status ${className}`;
+        }
+
+        function nextStep() {
+            if (currentStep >= steps.length) {
+                updateStatus('For loop execution completed!', 'finished');
+                document.getElementById('stepBtn').disabled = true;
+                return;
+            }
+
+            const step = steps[currentStep];
+
+            // Highlight the current line
+            highlightLine(step.line);
+
+            // Add step information
+            addStepInfo(step);
+
+            // Handle specific step actions
+            if (step.currentFruit !== undefined) {
+                updateCurrentFruit(step.currentFruit, step.iteration);
+                updateIterationCount(step.iteration);
+                currentIteration = step.iteration;
+            }
+
+            // Add output if this step produces output
+            if (step.output) {
+                addOutput(step.output);
+            }
+
+            // Update status
+            if (currentStep < steps.length - 1) {
+                updateStatus(`Executing step ${currentStep + 1} of ${steps.length}`, 'running');
+            } else {
+                updateStatus('For loop execution completed!', 'finished');
+                document.getElementById('stepBtn').disabled = true;
+                // Remove all highlights when finished
+                highlightLine(null);
+                updateCurrentFruit(null);
+                document.querySelectorAll('.fruit-item').forEach(item => {
+                    item.classList.remove('current');
+                });
+            }
+
+            currentStep++;
+
+            // Auto-continue if in auto mode
+            if (autoMode && currentStep < steps.length) {
+                setTimeout(nextStep, 2000);
+            }
+        }
+
+        function startExecution() {
+            autoMode = true;
+            isRunning = true;
+            document.getElementById('startBtn').disabled = true;
+            document.getElementById('stepBtn').disabled = true;
+            updateStatus('Auto-executing...', 'running');
+
+            nextStep();
+        }
+
+        function resetExecution() {
+            currentStep = 0;
+            currentIteration = 0;
+            isRunning = false;
+            autoMode = false;
+            outputCount = 0;
+
+            // Reset UI
+            highlightLine(null);
+            updateCurrentFruit(null);
+            document.getElementById('iterationCount').textContent = '0 / 3';
+            document.getElementById('stepContainer').innerHTML = `
+                <div class="step-info show">
+                    <strong>Ready to start!</strong><br>
+                    Click "Start" or "Next Step" to begin execution.
+                </div>
+            `;
+            document.getElementById('outputContainer').innerHTML = `
+                <div style="color: #a0aec0; font-style: italic;">
+                    Output will appear here...
+                </div>
+            `;
+
+            // Reset fruit highlights
+            document.querySelectorAll('.fruit-item').forEach(item => {
+                item.classList.remove('current');
+            });
+
+            // Reset buttons
+            document.getElementById('startBtn').disabled = false;
+            document.getElementById('stepBtn').disabled = false;
+
+            updateStatus('Ready to execute');
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function () {
+            resetExecution();
+        });
+    </script>
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+
+
+</body></html>

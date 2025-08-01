@@ -1,0 +1,214 @@
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Courier Prime', monospace;
+        background: linear-gradient(135deg, #ff9a9e, #fecfef);
+        min-height: 100vh;
+        padding: 20px;
+        overflow-x: hidden;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        margin-bottom: 10px;
+        background: #fff;
+        border-radius: 20px;
+        padding: 30px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .header {
+        text-align: center;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+    }
+
+    .header h1 {
+        font-size: 2.5em;
+        color: #333;
+    }
+
+    .card {
+        /* max-height: 300px; */
+        padding: 10px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        border-radius: 15px;
+        border: 1px;
+        margin-bottom: 3rem;
+    }
+
+    .card_first {
+        padding: 10px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        border-radius: 15px;
+        border: 1px;
+        /* min-height: 300px; */
+    }
+
+    .header p {
+        font-size: 1.2em;
+        color: #666;
+    }
+
+    .header img {
+        height: 4rem;
+    }
+
+    .row_second {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    .column_first {
+        flex: 1;
+        /* min-width: 300px; */
+    }
+
+    .column_second,
+    .column_third {
+        /* min-width: 50px; */
+        /* height: 100px; */
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 15px;
+        color: #333;
+    }
+
+    .code-container {
+        background: #2d3748;
+        color: #e2e8f0;
+        padding: 15px;
+        border-radius: 10px;
+        font-size: 14px;
+    }
+
+    .code-line {
+        margin: 5px 0;
+    }
+
+    .keyword {
+        color: #f093fb;
+    }
+
+    .variable {
+        color: #4fd1c7;
+    }
+
+    .string {
+        color: #68d391;
+    }
+
+    .variable-tracker,
+    .current-variable,
+    .iteration-counter {
+        background: #f1f1f1;
+        border-radius: 10px;
+        padding: 15px;
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .fruits-list {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .fruit-item,
+    .variable-value,
+    .iteration-value {
+        background: #fff;
+        padding: 10px;
+        border-radius: 8px;
+        font-weight: bold;
+        border: 2px solid #ddd;
+    }
+
+    .step-info {
+        background: #fff3cd;
+        border-left: 4px solid #ffc107;
+        padding: 15px;
+        border-radius: 8px;
+        font-size: 14px;
+        margin-top: 20px;
+    }
+
+    .status {
+        text-align: center;
+        /* display: flex;
+        align-items: center;
+        justify-content: center; */
+        background: #fff3cd;
+        color: #856404;
+        padding: 10px;
+        border: 2px solid #ffc107;
+        border-radius: 10px;
+        text-align: center;
+        font-weight: bold;
+        margin: 20px 0;
+    }
+
+    .controls {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    .btn {
+        background: #ee5a52;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 10px;
+        font-size: 14px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
+
+    .btn:hover {
+        background: #d93b3b;
+    }
+
+    .row_second {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    @media (max-width: 768px) {
+        .header {
+            flex-direction: column;
+            text-align: center;
+            gap: 15px;
+        }
+
+        @media (max-width: 576px) {
+            .header {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+
+            .row_second {
+                display: grid;
+                grid-template-columns: 1fr;
+            }
+
+            .controls {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    }

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript Exercise</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <main>
+        <section>
+            <div class="container">
+                <div class="row_first">
+                    <div class="column">
+                        <div class="header">
+                            <div class="python">
+                                <h1>🐍 Python For Loop Visualizer</h1>
+                                <p>Watch how the loop iterates through three fruits</p>
+                            </div>
+                            <figure class="jiametric">
+                                <img src="./assests/logo_jiametric.png" alt="">
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row_second">
+                    <div class="column_first">
+                        <div class="card_first">
+                            <div class="first_col">
+                                <h2>1. Python Code</h2>
+                                <div class="code-container">
+                                    <div class="code-line" id="line1">
+                                        <span class="variable">fruits</span> = [<span class="string">"apple"</span>,
+                                        <span class="string">"banana"</span>, <span class="string">"orange"</span>]
+                                    </div>
+                                    <div class="code-line" id="line2">
+                                        <span class="keyword">for</span> <span class="variable">fruit</span> <span
+                                            class="keyword">in</span> <span class="variable">fruits</span>:
+                                    </div>
+                                    <div class="code-line" id="line3">
+                                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">print</span>(<span
+                                            class="variable">fruit</span>)
+                                    </div>
+                                </div>
+
+                                <div class="variable-tracker">
+                                    <h3 style="text-align: center; margin-bottom: 10px;">🍎 Fruits List</h3>
+                                    <div class="fruits-list">
+                                        <div class="fruit-item" id="fruit-0">🍎 apple</div>
+                                        <div class="fruit-item" id="fruit-1">🍌 banana</div>
+                                        <div class="fruit-item" id="fruit-2">🍊 orange</div>
+                                    </div>
+                                </div>
+
+                                <div class="current-variable">
+                                    <h3 style="margin-bottom: 10px;">Current Variable: fruit</h3>
+                                    <div class="variable-value" id="currentFruit">Not set</div>
+                                </div>
+
+                                <div class="iteration-counter">
+                                    <h3 style="margin-bottom: 10px;">Iteration</h3>
+                                    <div class="iteration-value" id="iterationCount">0 / 3</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="second">
+                        <div class="column_second">
+                            <div class="card">
+                                <div class="secon_col">
+                                    <h2>2. Step-by-Step Execution</h2>
+                                    <div id="stepContainer">
+                                        <div class="step-info show">
+                                            <strong>Ready to start!</strong><br>
+                                            Click "Start" or "Next Step" to begin execution.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="column_third">
+                            <div class="card">
+                                <div class="third_col">
+                                    <h2>3. Output</h2>
+                                    <div class="code-container" id="outputContainer">
+                                        <div style="color: #a0aec0; font-style: italic;">
+                                            Output will appear here...
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column_forth">
+                            <div class="controls">
+                                <button class="status" id="status">Ready to execute</button>
+                            </div>
+                            <div class="controls">
+                                <button class="btn" id="startBtn" onclick="startExecution()">▶️ Start</button>
+                                <button class="btn" id="stepBtn" onclick="nextStep()" disabled>👆 Next Step</button>
+                                <button class="btn" id="resetBtn" onclick="resetExecution()">🔄 Reset</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </section>
+    </main>
+    <script src="./script.js"></script>
+</body>
+
+</html>
