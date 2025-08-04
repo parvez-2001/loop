@@ -8,17 +8,18 @@
         font-family: 'Courier Prime', monospace;
         background: linear-gradient(135deg, #ff9a9e, #fecfef);
         min-height: 100vh;
-        padding: 20px;
+        padding: 10px;
         overflow-x: hidden;
     }
 
     .container {
         max-width: 1200px;
+        max-height: 100vh;
         margin: 0 auto;
         margin-bottom: 10px;
         background: #fff;
         border-radius: 20px;
-        padding: 30px;
+        padding: 10px;
         box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
     }
 
