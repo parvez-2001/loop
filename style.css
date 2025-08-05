@@ -95,6 +95,16 @@
 
     .code-line {
         margin: 5px 0;
+        padding: 5px 10px;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+        position: relative;
+    }
+
+    .code-line.active {
+        background: rgba(72, 187, 120, 0.3);
+        border-left: 4px solid #48bb78;
+        transform: translateX(5px);
     }
 
     .keyword {
@@ -134,6 +144,14 @@
         border-radius: 8px;
         font-weight: bold;
         border: 2px solid #ddd;
+    }
+
+    .fruit-item.current {
+        background: #4caf50;
+        color: white;
+        border-color: #45a049;
+        transform: scale(1.1);
+        box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
     }
 
     .step-info {
